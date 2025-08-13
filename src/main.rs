@@ -18,21 +18,21 @@ struct Arguments {
 
 #[derive(Subcommand)]
 enum Commands {
-    #[command(about = "Adds a new task", arg_required_else_help = true)]
+    #[command(about = "Adds a new task", arg_required_else_help = true,short_flag='a')]
     Add {
         #[arg(help = "Task description", value_name = "TASK DESCRIPTION")]
         text: String,
         #[arg(help = "Task date, optional if not actual time", value_name = "TASK DATE")]
         date: Option<String>,
     },
-    #[command(about = "List all tasks")]
+    #[command(about = "List all tasks",short_flag='l')]
     List,
-    #[command(about = "Marks task as done", arg_required_else_help = true)]
+    #[command(about = "Marks task as done", arg_required_else_help = true,short_flag='d')]
     Done {
         #[arg(help = "Task id", value_name = "TASK ID")]
         id: u32,
     },
-    #[command(about = "Cleans the task database")]
+    #[command(about = "Cleans the task database",short_flag='c')]
     Clean,
 }
 
