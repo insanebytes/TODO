@@ -1,4 +1,4 @@
 # TODO
-TODO is a gui apo for managing basic tasks
+TODO is a gui app for managing basic tasks
 
 Work in progress
