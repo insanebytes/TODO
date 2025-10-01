@@ -52,10 +52,7 @@ impl ToDoApp {
     fn add_task<T: Into<String>>(&mut self, name: T, description: T, date: Option<DateTime>) {
         let id: u32 = (self.tasks.len() as u32) + 1;
 
-        let date_work: DateTime = match date {
-            Some(d) => d,
-            None => Zoned::now().datetime(),
-        };
+        let date_work: DateTime = date.unwrap_or_else(|| Zoned::now().datetime());
 
         let tarea: Task = Task {
             id,
@@ -166,6 +163,7 @@ impl eframe::App for ToDoApp {
 
                         // Acción al hacer click en cualquier parte de la fila
                         if response.clicked() {
+                            todo!("popup de añadir tarea");
                             self.add_task(
                                 "Task",
                                 "Task description",
@@ -193,7 +191,12 @@ fn render_task(ui: &mut egui::Ui, tarea: &mut Task, width: f32) -> Option<()> {
                 opcion = Some(())
             };
             if tarea.done {
-                ui.label(RichText::new(&tarea.name).strong().strikethrough().size(16.0));
+                ui.label(
+                    RichText::new(&tarea.name)
+                        .strong()
+                        .strikethrough()
+                        .size(16.0),
+                );
             } else {
                 ui.label(RichText::new(&tarea.name).strong().size(16.0));
             }
