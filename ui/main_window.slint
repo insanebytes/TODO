@@ -1,0 +1,16 @@
+import { TextEdit } from "std-widgets.slint";
+import { LeftBar } from "LeftBar.slint";
+
+export component MainWindow inherits Window {
+    title: "ARG TODO";
+    LeftBar {
+        container-width: root.width;
+
+        VerticalLayout {
+            TextEdit {
+                font-size: 14px;
+                text: "Lorem ipsum dolor sit amet,\n consectetur adipisici elit";
+            }
+        }
+    }
+}

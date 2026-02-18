@@ -1,16 +1,12 @@
-use eframe::egui::{self};
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+use slint::Model;
+use std::error::Error;
 
-mod app;
-mod task;
+slint::include_modules!();
+fn main() -> Result<(), Box<dyn Error>> {
+    let main_window = MainWindow::new()?;
 
-fn main() {
-    let native_options = eframe::NativeOptions::default();
-    let _ = eframe::run_native(
-        "ARG TODO",
-        native_options,
-        Box::new(|creation_context| {
-            creation_context.egui_ctx.set_theme(egui::Theme::Dark);
-            Ok(Box::new(app::ToDoApp::new()))
-        }),
-    );
+    main_window.run()?;
+
+    Ok(())
 }

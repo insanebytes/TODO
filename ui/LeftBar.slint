@@ -1,0 +1,23 @@
+export component LeftBar inherits HorizontalLayout {
+    in property <length> container-width;
+
+    property <float> side-bar-ratio: 0.30;
+    Rectangle {
+        width: root.container-width * root.side-bar-ratio;
+        background: #2a2a2a;
+
+        TouchArea {
+            width: 10px;
+            x: parent.width - self.width / 2;
+            mouse-cursor: ew-resize;
+
+            moved => {
+                if (self.pressed) {
+                    root.side_bar_ratio = (parent.width + self.mouse-x) / root.container-width;
+                }
+            }
+        }
+    }
+
+    @children
+}
